@@ -21,7 +21,7 @@ class q2apro_flagreasons_event
 			', $userid, $postid);
 			
 			// admin removes all flags of post
-			if(qa_get_logged_in_level() >= QA_USER_LEVEL_ADMIN)
+			if(qa_get_logged_in_level() >= QA_USER_LEVEL_EDITOR)
 			{
 				// remove flag of userid in flagreasons table
 				qa_db_query_sub('
