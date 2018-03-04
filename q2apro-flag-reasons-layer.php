@@ -138,23 +138,6 @@ class qa_html_theme_layer extends qa_html_theme_base
 				.qa-go-flag-send-button {
 					margin-top:15px;
 				}
-				
-				#flagbox-popup {
-					background: #000000;
-					background: rgba(0,0,0,0.75);
-					height: 100%;
-					width: 100%;
-					position: fixed;
-					top: 0;
-					left: 0;
-					display: none;
-					z-index: 5119;
-				}
-				#flagbox-center {
-					margin: 6% auto;
-					width: auto;
-					text-align: center;
-				}
 			</style>
 			');
 		}
@@ -166,7 +149,7 @@ class qa_html_theme_layer extends qa_html_theme_base
 	
 	public function body_hidden()
 	{
-		if(qa_is_logged_in())
+		if(qa_is_logged_in() && $this->template=="question")
 		{
 			$this->output('
 			<div id="flagbox-popup">
@@ -213,6 +196,25 @@ class qa_html_theme_layer extends qa_html_theme_base
 					</div>
 				</div> <!-- flagbox-popup -->
 			</div> <!-- flagbox-center -->
+			
+			<style>
+				#flagbox-popup {
+					background: #000000;
+					background: rgba(0,0,0,0.75);
+					height: 100%;
+					width: 100%;
+					position: fixed;
+					top: 0;
+					left: 0;
+					display: none;
+					z-index: 5119;
+				}
+				#flagbox-center {
+					margin: 6% auto;
+					width: auto;
+					text-align: center;
+				}
+			</style>
 			');
 		}
 		
