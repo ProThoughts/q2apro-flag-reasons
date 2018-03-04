@@ -293,7 +293,6 @@ class qa_html_theme_layer extends qa_html_theme_base
 					}
 					.qa-flagreasons {
 						display:inline-block;
-						min-width:300px;
 						max-width:90%;
 						margin-bottom:30px;
 						padding:20px 20px 5px 20px;
