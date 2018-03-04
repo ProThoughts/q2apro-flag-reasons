@@ -19,6 +19,16 @@ class q2apro_flagreasons_event
 				WHERE userid = #
 				AND postid = #
 			', $userid, $postid);
+			
+			// admin removes all flags of post
+			if(qa_get_logged_in_level() >= QA_USER_LEVEL_ADMIN)
+			{
+				// remove flag of userid in flagreasons table
+				qa_db_query_sub('
+					DELETE FROM `^flagreasons` 
+					WHERE postid = #
+				', $postid);
+			}
 		}
 	} // end process_event
 	
