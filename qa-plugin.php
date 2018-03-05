@@ -62,10 +62,10 @@ function q2apro_flag_reasonid_to_readable($reasonid)
 	switch($reasonid)
 	{
 		case 1:
-			return qa_lang('q2apro_flagreasons_lang/reason_spam');
+			return qa_lang('q2apro_flagreasons_lang/reason_quality');
 			break;
 		case 2:
-			return qa_lang('q2apro_flagreasons_lang/reason_quality');
+			return qa_lang('q2apro_flagreasons_lang/reason_spam');
 			break;
 		case 3:
 			return qa_lang('q2apro_flagreasons_lang/reason_rude');
