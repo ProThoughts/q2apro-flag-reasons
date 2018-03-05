@@ -4,13 +4,13 @@
 
 ## Description ##
 
-Adds choice of flag reasons and comment option to each flag vote
+Adds choice of flag reasons and notice option to each flag vote.
 
 
 ## Features ##
 
 - user gets list of reasons to choose from when clicking on the button "flag"
-- user can add a comment
+- user can add a notice to each flag
 - flags and reasons are listed at post
 
 
