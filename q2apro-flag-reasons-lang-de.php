@@ -9,6 +9,8 @@ return array(
 	'reason_quality' => 'Schreibregeln',
 	'reason_rude' => 'Beleidigend',
 	'reason_edit' => 'Bearbeitung erforderlich',
+	'reason_duplicate' => 'Duplikat',
+	'reason_offtopic' => 'Offtopic',
 	'reason_migrate' => 'Migrieren',
 	'reason_close' => 'Schließen',
 	'reason_other' => 'Anderer',

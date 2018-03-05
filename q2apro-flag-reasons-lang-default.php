@@ -9,6 +9,8 @@ return array(
 	'reason_quality' => 'Low quality',
 	'reason_rude' => 'Insulting',
 	'reason_edit' => 'Edit necessary',
+	'reason_duplicate' => 'Duplicate',
+	'reason_offtopic' => 'Off-topic',
 	'reason_migrate' => 'Migrate',
 	'reason_close' => 'Close',
 	'reason_other' => 'Other',

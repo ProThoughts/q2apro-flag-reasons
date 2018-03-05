@@ -1,13 +1,13 @@
 <?php
 /*
 	Plugin Name: q2apro Flag Reasons
-	Plugin URI: 
-	Plugin Description: Adds choice of flag reasons and comment option to each flag vote
-	Plugin Version: 0.1
-	Plugin Date: 2018-03-03
+	Plugin URI: https://github.com/q2apro/q2apro-flag-reasons
+	Plugin Description: Adds choice of flag reasons and notice option to each flag vote
+	Plugin Version: 0.2
+	Plugin Date: 2018-03-05
 	Plugin Author: q2apro.com
 	Plugin License: GPLv3
-	Plugin Minimum Question2Answer Version: 1.5
+	Plugin Minimum Question2Answer Version: 1.7
 	Plugin Update Check URI: 
 
 	This program is free software: you can redistribute it and/or modify
@@ -55,8 +55,8 @@ function q2apro_flag_reasonid_to_readable($reasonid)
 	2 - quality
 	3 - rude
 	4 - edit
-	5 - migrate
-	6 - other
+	5 - duplicate
+	6 - migrate
 	*/
 	
 	switch($reasonid)
@@ -74,12 +74,44 @@ function q2apro_flag_reasonid_to_readable($reasonid)
 			return qa_lang('q2apro_flagreasons_lang/reason_edit');
 			break;
 		case 5:
-			return qa_lang('q2apro_flagreasons_lang/reason_migrate');
+			return qa_lang('q2apro_flagreasons_lang/reason_duplicate');
 			break;
 		case 6:
-			return qa_lang('q2apro_flagreasons_lang/reason_other');
+			return qa_lang('q2apro_flagreasons_lang/reason_migrate');
 			break;
 		default: 
 			return '';
 	}
+}
+
+function q2apro_get_postflags($postid)
+{
+	return qa_db_read_all_assoc( qa_db_query_sub('
+			SELECT userid, postid, reasonid, notice 
+			FROM ^flagreasons
+			WHERE postid = #
+			', $postid
+			));
+}
+
+function q2apro_count_postflags_output($postid)
+{
+	$flags = q2apro_get_postflags($postid);
+	
+	$flagoutput = '';
+	
+	// count reasons
+	foreach($flags as $flag)
+	{
+		$handle = qa_userid_to_handle($flag['userid']);
+		$flagoutput .= (empty($flagoutput) ? '' : '<br>');
+		$flagoutput .= '✌ '.q2apro_flag_reasonid_to_readable($flag['reasonid']).' ('.$handle;
+		if(!empty($flag['notice']))
+		{
+			$flagoutput .= ' “'.$flag['notice'].'”';
+		}
+		$flagoutput .= ')';
+	}
+	
+	return $flagoutput;	
 }
