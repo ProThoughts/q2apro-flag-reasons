@@ -9,7 +9,7 @@ class q2apro_flagreasons_event
 	{
 		$flagevents = array('q_unflag', 'a_unflag', 'c_unflag');
 		
-		if($event == 'q_unflag')
+		if(in_array($event, $flagevents))
 		{
 			$postid = $params['postid'];
 			

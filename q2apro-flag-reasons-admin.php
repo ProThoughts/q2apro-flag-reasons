@@ -19,7 +19,7 @@ class q2apro_flagreasons_admin
 				  `userid` int(10) UNSIGNED NOT NULL,
 				  `postid` int(10) UNSIGNED NOT NULL,
 				  `reasonid` int(10) UNSIGNED NOT NULL,
-				  `comment` varchar(255) NULL,
+				  `notice` varchar(255) NULL,
 				  PRIMARY KEY (userid, postid)
 				) 
 				ENGINE=MyISAM DEFAULT CHARSET=utf8;
