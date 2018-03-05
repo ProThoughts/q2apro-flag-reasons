@@ -13,22 +13,27 @@ class q2apro_flagreasons_event
 		{
 			$postid = $params['postid'];
 			
-			// remove flag of userid in flagreasons table
+			// remove post flag by userid
 			qa_db_query_sub('
 				DELETE FROM `^flagreasons` 
 				WHERE userid = #
 				AND postid = #
 			', $userid, $postid);
-			
-			// admin removes all flags of post
-			if(qa_get_logged_in_level() >= QA_USER_LEVEL_EDITOR)
-			{
-				// remove flag of userid in flagreasons table
-				qa_db_query_sub('
-					DELETE FROM `^flagreasons` 
-					WHERE postid = #
-				', $postid);
-			}
+		}
+		
+		// admin, editor or moderator removes all flags of post
+		$flagevents2 = array('q_clearflags', 'a_clearflags', 'c_clearflags');
+		
+		if(in_array($event, $flagevents2))
+		{
+			// if(qa_get_logged_in_level() >= QA_USER_LEVEL_EDITOR)
+			$postid = $params['postid'];
+
+			// remove all flags for this post
+			qa_db_query_sub('
+				DELETE FROM `^flagreasons` 
+				WHERE postid = #
+			', $postid);
 		}
 	} // end process_event
 	
